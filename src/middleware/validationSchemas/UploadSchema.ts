@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import { GetSignatureType } from '../../models/upload';
+import { GetSignatureType } from '../../models/image';
 
 const UploadSchema = {
   signature: Joi.object<GetSignatureType>({
