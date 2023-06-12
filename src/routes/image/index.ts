@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { imageController } from '../../controller';
 import upload from '../../middleware/upload';
 
-import { validateToken } from '../../middleware/validate';
+import { validateAdmin, validateToken } from '../../middleware/validate';
 
 const router = Router();
 
@@ -11,6 +11,13 @@ router.post(
   validateToken,
   upload.single('image'),
   imageController.uploadImage
+);
+
+router.delete(
+  '/delete',
+  validateToken,
+  validateAdmin,
+  imageController.deleteImage
 );
 
 export default router;

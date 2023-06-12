@@ -36,7 +36,7 @@ export const randomImageName = () => {
 export const uploadFile = async (file: S3UploadFile) => {
   const params: PutObjectCommandInput = {
     Bucket: bucketName,
-    Key: randomImageName(),
+    Key: file.name,
     Body: file.buffer,
     ContentType: file.mimetype,
   };
