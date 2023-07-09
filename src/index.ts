@@ -10,12 +10,12 @@ import helmet from 'helmet';
 import {
   analysisRouter,
   authRouter,
+  imageRouter,
   orderedRouter,
   paymentRouter,
   productRouter,
   subscriptionRouter,
   templateRouter,
-  uploadRouter,
   userRouter,
 } from './routes';
 
@@ -124,7 +124,7 @@ const StartServer = () => {
   app.use('/user', userRouter);
   app.use('/product', productRouter);
   app.use('/payment', paymentRouter);
-  app.use('/upload', uploadRouter);
+  app.use('/image', imageRouter);
   app.use('/ordered', orderedRouter);
   app.use('/analysis', analysisRouter);
   app.use('/template', templateRouter);
