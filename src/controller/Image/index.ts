@@ -7,6 +7,7 @@ const uploadImage = async (req: Request, res: Response, next: NextFunction) => {
     const buffer = req.file?.buffer;
     const mimetype = req.file?.mimetype;
     const name: string | undefined = req.body.name;
+    const isNoCache: boolean | undefined = req.body.isNoCache;
 
     if (!buffer || !mimetype)
       return res.status(404).json({ message: 'Invalid File' });
@@ -17,11 +18,11 @@ const uploadImage = async (req: Request, res: Response, next: NextFunction) => {
       name: image,
       buffer,
       mimetype,
+      maxAge: isNoCache ? 0 : 60 * 60 * 24,
     });
-    if (name) await invalidateCache(name);
+    if (name && !isNoCache) await invalidateCache(name);
     return res.status(200).json({ data, image });
   } catch (err) {
-    console.log(err);
     return res.status(500).json(err);
   }
 };

@@ -39,6 +39,7 @@ export const uploadFile = async (file: S3UploadFile) => {
     Key: file.name,
     Body: file.buffer,
     ContentType: file.mimetype,
+    CacheControl: `max-age=${file.maxAge}`,
   };
 
   const command = new PutObjectCommand(params);
